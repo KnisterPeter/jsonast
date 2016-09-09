@@ -1,0 +1,13 @@
+{
+  "array": [
+    true,
+    false,
+    null,
+    {
+      "object": {},
+      "boolean": true,
+      "undefined": null,
+      "number": 12.34E-56
+    }
+  ]
+}

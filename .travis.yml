@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+node_js:
+- '6'
+- '5'
+- '4'
+matrix:
+  fast_finish: true
+branches:
+  only:
+    - master
+cache:
+  directories:
+  - node_modules
+notifications:
+  email:
+    on_success: never
+
+before_script: 'npm run bootstrap; npm run linter'
+script: 'npm run coverage'
+after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
