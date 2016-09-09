@@ -37,10 +37,10 @@ jsonast is built by [KnisterPeter](https://github.com/KnisterPeter) and
 [license-image]: https://img.shields.io/github/license/KnisterPeter/jsonast.svg
 [license-url]: https://github.com/KnisterPeter/jsonast
 
-[daviddm-jsonast-image]: https://david-dm.org/jsonast/jsonast.svg
-[daviddm-jsonast-url]: https://david-dm.org/jsonast/jsonast
-[daviddm-dev-jsonast-image]: https://david-dm.org/jsonast/jsonast/dev-status.svg
-[daviddm-dev-jsonast-url]: https://david-dm.org/jsonast/jsonast
+[daviddm-jsonast-image]: https://david-dm.org/KnisterPeter/jsonast/status.svg
+[daviddm-jsonast-url]: https://david-dm.org/KnisterPeter/jsonast
+[daviddm-dev-jsonast-image]: https://david-dm.org/KnisterPeter/jsonast/dev-status.svg
+[daviddm-dev-jsonast-url]: https://david-dm.org/KnisterPeter/jsonast?type=dev
 
 [travis-image]: https://travis-ci.org/KnisterPeter/jsonast.svg?branch=master
 [travis-url]: https://travis-ci.org/KnisterPeter/jsonast
