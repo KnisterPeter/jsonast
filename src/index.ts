@@ -1,3 +1,4 @@
+import { CharacterStream } from './character-stream';
 import * as Types from './types';
 export * from './types';
 
@@ -109,8 +110,12 @@ function value(cs: CharacterStream): Types.Value {
     return object(cs);
   } else if (cs.ch === '[') {
     return array(cs);
-  } else if (cs.ch === 't' || cs.ch === 'f' || cs.ch === 'n') {
-    return literal(cs);
+  } else if (cs.ch === 't') {
+    return trueLiteral(cs);
+  } else if (cs.ch === 'f') {
+    return falseLiteral(cs);
+  } else if (cs.ch === 'n') {
+    return nullLiteral(cs);
   }
   return number(cs);
 }
@@ -134,38 +139,43 @@ function string(cs: CharacterStream): Types.String {
   };
 }
 
-function literal(cs: CharacterStream): Types.Literal {
+function trueLiteral(cs: CharacterStream): Types.Literal {
   ws(cs);
   const start = cs.pos;
-  if (cs.ch === 't') {
-    cs.accept('true');
-    return {
-      type: 'true',
-      pos: {
-        start,
-        end: cs.pos
-      }
-    };
-  } else if (cs.ch === 'f') {
-    cs.accept('false');
-    return {
-      type: 'false',
-      pos: {
-        start,
-        end: cs.pos
-      }
-    };
-  } else if (cs.ch === 'n') {
-    cs.accept('null');
-    return {
-      type: 'null',
-      pos: {
-        start,
-        end: cs.pos
-      }
-    };
-  }
-  throw new Error('Illegal literal');
+  cs.accept('true');
+  return {
+    type: 'true',
+    pos: {
+      start,
+      end: cs.pos
+    }
+  };
+}
+
+function falseLiteral(cs: CharacterStream): Types.Literal {
+  ws(cs);
+  const start = cs.pos;
+  cs.accept('false');
+  return {
+    type: 'false',
+    pos: {
+      start,
+      end: cs.pos
+    }
+  };
+}
+
+function nullLiteral(cs: CharacterStream): Types.Literal {
+  ws(cs);
+  const start = cs.pos;
+  cs.accept('null');
+  return {
+    type: 'null',
+    pos: {
+      start,
+      end: cs.pos
+    }
+  };
 }
 
 function number(cs: CharacterStream): Types.Number {
@@ -230,85 +240,4 @@ function ws(cs: CharacterStream): void {
       cs.skip('\n') ||
       cs.skip('\r');
   }
-}
-
-class CharacterStream {
-
-  private _offset: number = 0;
-
-  private _line: number = 1;
-
-  private _column: number = 1;
-
-  constructor(private text: string) {}
-
-  get ch(): string {
-    return this.text.charAt(this._offset);
-  }
-
-  get eoi(): boolean {
-    return this.text.length === this._offset;
-  }
-
-  get line(): number {
-    return this._line;
-  }
-
-  get column(): number {
-    return this._column;
-  }
-
-  get offset(): number {
-    return this._offset;
-  }
-
-  get pos(): {line: number; column: number; char: number} {
-    return {
-      line: this.line,
-      column: this.column,
-      char: this.offset
-    };
-  }
-
-  public expect(text: string): void {
-    if (this.ch !== text) {
-      const ch = this.ch
-        .replace('\n', '\\n')
-        .replace('\r', '\\r')
-        .replace('\t', '\\t');
-      throw new Error(`Unexpected character '${ch}' at ${this.line}:${this.column}. Expected '${text}'`);
-    }
-  }
-
-  public next(): void {
-    if (this.ch === '\n') {
-      this._column = 1;
-      this._line++;
-    } else {
-      this._column++;
-    }
-    this._offset++;
-  }
-
-  public accept(text: string): void {
-    const remember = this._offset;
-    try {
-      for (let i = 0, n = text.length; i < n; i++) {
-        this.expect(text.charAt(i));
-        this.next();
-      }
-    } catch (e) {
-      this._offset = remember;
-      throw new Error(`Unexpected character '${this.ch}' at ${this.line}:${this.column}. Expected '${text}'`);
-    }
-  }
-
-  public skip(text: string): boolean {
-    if (this.ch === text) {
-      this.next();
-      return true;
-    }
-    return false;
-  }
-
 }

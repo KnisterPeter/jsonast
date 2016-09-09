@@ -27,7 +27,22 @@ npm install jsonast
 ```javascript
 import parse from 'jsonast';
 
+// Allows plain valid json
 const ast = parse('{}');
+
+// but also invalid json like this ones (note the missing commas)
+const ast = parse(`
+  {
+    "key1": "value"
+    "key2": "value"
+  }
+`);
+const ast = parse(`
+  [
+    "entry1"
+    "entry2"
+  ]
+`);
 ```
 
 ---
