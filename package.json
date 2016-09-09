@@ -19,7 +19,7 @@
     "watch:test": "ava --watch",
     "prerelease": "git checkout master && git pull origin master",
     "release": "standard-version",
-    "poastrelease": "git push --follow-tags origin master && npm publish"
+    "postrelease": "git push --follow-tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
