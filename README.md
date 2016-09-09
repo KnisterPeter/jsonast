@@ -1,6 +1,7 @@
 # jsonast is a json to ast parser with some error correction
 
 [![license][license-image]][license-url]
+[![npm][npm-image]][npm-url]
 [![dep][daviddm-jsonast-image]][daviddm-jsonast-url]
 [![dev][daviddm-dev-jsonast-image]][daviddm-dev-jsonast-url]
 [![travis][travis-image]][travis-url]
@@ -36,6 +37,9 @@ jsonast is built by [KnisterPeter](https://github.com/KnisterPeter) and
 
 [license-image]: https://img.shields.io/github/license/KnisterPeter/jsonast.svg
 [license-url]: https://github.com/KnisterPeter/jsonast
+
+[npm-image]: https://img.shields.io/npm/v/jsonast.svg?maxAge=2592000
+[npm-url]: https://www.npmjs.com/package/jsonast
 
 [daviddm-jsonast-image]: https://david-dm.org/KnisterPeter/jsonast/status.svg
 [daviddm-jsonast-url]: https://david-dm.org/KnisterPeter/jsonast
