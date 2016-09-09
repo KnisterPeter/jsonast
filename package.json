@@ -69,7 +69,6 @@
   "nyc": {
     "exclude": [
       "node_modules",
-      "dist/src/index.js",
       "dist/test",
       "coverage",
       "test"
