@@ -12,7 +12,7 @@
     "pretest": "npm run build && npm run copyfixtures",
     "test": "ava",
     "prepublish": "not-in-install && npm run test || echo 'In install cycle, skipping prepublish'",
-    "precoverage": "npm run clean && tsc --inlineSourceMap",
+    "precoverage": "npm run clean && tsc --inlineSourceMap && npm run copyfixtures",
     "coverage": "nyc --reporter lcov --all ava",
     "watch:build": "tsc --sourceMap --watch",
     "prewatch:test": "npm run copyfixtures",
