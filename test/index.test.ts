@@ -1,6 +1,6 @@
 import test from 'ava';
 import * as fs from 'fs';
-import parse from '../src/index';
+import parse, * as Types from '../src/index';
 
 test('jsonast should throw if dangling input found', t => {
   t.throws(() => parse('a'), /Unexpected character/);
@@ -75,7 +75,7 @@ test('jsonast should accept object with string member', t => {
         char: 15
       }
     }
-  });
+  } as Types.JsonObject);
 });
 
 test('jsonast should accept object with string members', t => {
@@ -163,7 +163,7 @@ test('jsonast should accept object with string members', t => {
         char: 31
       }
     }
-  });
+  } as Types.JsonObject);
 });
 
 test('jsonast should accept plain array', t => {
@@ -249,7 +249,7 @@ test('jsonast should accept array with elements', t => {
         char: 16
       }
     }
-  });
+  } as Types.JsonArray);
 });
 
 test('jsonast should accept complex json', t => {
@@ -494,15 +494,15 @@ test('jsonast should accept complex json', t => {
           }]
         }
       }]
-  });
+  } as Types.JsonObject);
 });
 
 test('jsonast should correct a missing comma in objects', t => {
-  const actual = parse('{"a": "b" "c": "d"}');
-  t.is(actual.members.length, 2);
+  const actual = parse<Types.JsonObject>('{"a": "b" "c": "d"}');
+  t.is(actual.members!.length, 2);
 });
 
 test('jsonast should correct a missing comma in arrays', t => {
-  const actual = parse('[0 1]');
-  t.is(actual.elements.length, 2);
+  const actual = parse<Types.JsonArray>('[0 1]');
+  t.is(actual.elements!.length, 2);
 });

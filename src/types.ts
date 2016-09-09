@@ -1,4 +1,4 @@
-export interface Node {
+export interface JsonNode {
   type: string;
   pos: {
     start: {
@@ -14,33 +14,33 @@ export interface Node {
   };
 }
 
-export interface Object extends Node {
+export interface JsonObject extends JsonNode {
   type: 'object';
   members?: Pair[];
 }
 
 export interface Pair {
-  key: String;
-  value: Value;
+  key: JsonString;
+  value: JsonValue;
 }
 
-export interface Array extends Node {
+export interface JsonArray extends JsonNode {
   type: 'array';
-  elements?: Value[];
+  elements?: JsonValue[];
 }
 
-export type Value = String|Number|Object|Array|Literal;
+export type JsonValue = JsonString | JsonNumber | JsonObject | JsonArray | JsonLiteral;
 
-export interface String extends Node {
+export interface JsonString extends JsonNode {
   type: 'string';
   value: string;
 }
 
-export interface Number extends Node {
+export interface JsonNumber extends JsonNode {
   type: 'number';
   value: number;
 }
 
-export interface Literal extends Node {
+export interface JsonLiteral extends JsonNode {
   type: 'true' | 'false' | 'null';
 }

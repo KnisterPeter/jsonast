@@ -2,8 +2,8 @@ import { CharacterStream } from './character-stream';
 import * as Types from './types';
 export * from './types';
 
-export default function parse(text: string): any {
-  let result: Types.Node | undefined = undefined;
+export default function parse<T extends Types.JsonObject|Types.JsonArray>(text: string): T {
+  let result: Types.JsonNode | undefined = undefined;
   const cs = new CharacterStream(text);
   ws(cs);
   if (cs.ch === '{') {
@@ -15,13 +15,10 @@ export default function parse(text: string): any {
   if (!cs.eoi) {
     throw new Error(`Unexpected character '${cs.ch}' at ${cs.line}:${cs.column}. Expected end of input.`);
   }
-  if (result === undefined) {
-    throw new Error('Nothing parsed');
-  }
-  return result;
+  return result! as T;
 }
 
-function object(cs: CharacterStream): Types.Object {
+function object(cs: CharacterStream): Types.JsonObject {
   function members(cs1: CharacterStream): Types.Pair[] {
     function pair(cs2: CharacterStream): Types.Pair {
       ws(cs2);
@@ -50,7 +47,7 @@ function object(cs: CharacterStream): Types.Object {
     return members;
   }
 
-  const ast: Types.Object = {
+  const ast: Types.JsonObject = {
     type: 'object',
     pos: {
       start: cs.pos,
@@ -71,8 +68,8 @@ function object(cs: CharacterStream): Types.Object {
   return ast;
 }
 
-function array(cs: CharacterStream): Types.Array {
-  const ast: Types.Array = {
+function array(cs: CharacterStream): Types.JsonArray {
+  const ast: Types.JsonArray = {
     type: 'array',
     pos: {
       start: cs.pos,
@@ -102,7 +99,7 @@ function array(cs: CharacterStream): Types.Array {
   return ast;
 }
 
-function value(cs: CharacterStream): Types.Value {
+function value(cs: CharacterStream): Types.JsonValue {
   ws(cs);
   if (cs.ch === '"') {
     return string(cs);
@@ -120,7 +117,7 @@ function value(cs: CharacterStream): Types.Value {
   return number(cs);
 }
 
-function string(cs: CharacterStream): Types.String {
+function string(cs: CharacterStream): Types.JsonString {
   const start = cs.pos;
   let value = '';
   cs.accept('"');
@@ -139,7 +136,7 @@ function string(cs: CharacterStream): Types.String {
   };
 }
 
-function trueLiteral(cs: CharacterStream): Types.Literal {
+function trueLiteral(cs: CharacterStream): Types.JsonLiteral {
   ws(cs);
   const start = cs.pos;
   cs.accept('true');
@@ -152,7 +149,7 @@ function trueLiteral(cs: CharacterStream): Types.Literal {
   };
 }
 
-function falseLiteral(cs: CharacterStream): Types.Literal {
+function falseLiteral(cs: CharacterStream): Types.JsonLiteral {
   ws(cs);
   const start = cs.pos;
   cs.accept('false');
@@ -165,7 +162,7 @@ function falseLiteral(cs: CharacterStream): Types.Literal {
   };
 }
 
-function nullLiteral(cs: CharacterStream): Types.Literal {
+function nullLiteral(cs: CharacterStream): Types.JsonLiteral {
   ws(cs);
   const start = cs.pos;
   cs.accept('null');
@@ -178,7 +175,7 @@ function nullLiteral(cs: CharacterStream): Types.Literal {
   };
 }
 
-function number(cs: CharacterStream): Types.Number {
+function number(cs: CharacterStream): Types.JsonNumber {
   function digit(): string {
     let number = '';
     const ch = cs.ch;
