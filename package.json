@@ -16,7 +16,10 @@
     "coverage": "nyc --reporter lcov --all ava",
     "watch:build": "tsc --sourceMap --watch",
     "prewatch:test": "npm run copyfixtures",
-    "watch:test": "ava --watch"
+    "watch:test": "ava --watch",
+    "prerelease": "git checkout master && git pull origin master",
+    "release": "standard-version",
+    "poastrelease": "git push --follow-tags origin master && npm publish"
   },
   "repository": {
     "type": "git",
@@ -48,6 +51,7 @@
     "nyc": "8.1.0",
     "rimraf": "2.5.4",
     "source-map-support": "0.4.2",
+    "standard-version": "^2.4.0",
     "tslint": "^3.15.1",
     "typescript": "^2.0.2"
   },
