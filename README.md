@@ -46,7 +46,7 @@ jsonast is built by [KnisterPeter](https://github.com/KnisterPeter) and
 [travis-url]: https://travis-ci.org/KnisterPeter/jsonast
 
 [coveralls-image]: https://img.shields.io/coveralls/KnisterPeter/jsonast/master.svg
-[coveralls-url]: https://coveralls.io/github/jsonast/jsonast
+[coveralls-url]: https://coveralls.io/github/KnisterPeter/jsonast
 
 [commitizen-image]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
 [commitizen-url]: http://commitizen.github.io/cz-cli/
