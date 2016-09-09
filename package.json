@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "paeckchen/paeckchen"
+    "url": "knisterpeter/jsonast"
   },
   "keywords": [
     "json",
