@@ -1,6 +1,6 @@
 {
   "name": "jsonast",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "a json to ast parser which allows error recovery",
   "main": "dist/src/index.js",
   "typings": "./dist/src/index",
