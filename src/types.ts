@@ -1,17 +1,19 @@
+export interface Position {
+  start: {
+    line: number;
+    column: number;
+    char: number;
+  };
+  end: {
+    line: number;
+    column: number;
+    char: number;
+  };
+}
+
 export interface JsonNode {
   type: string;
-  pos: {
-    start: {
-      line: number;
-      column: number;
-      char: number;
-    };
-    end: {
-      line: number;
-      column: number;
-      char: number;
-    };
-  };
+  pos: Position;
 }
 
 export interface JsonObject extends JsonNode {
