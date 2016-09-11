@@ -1,3 +1,5 @@
+import * as Types from './types';
+
 export class CharacterStream {
 
   private _offset: number = 0;
@@ -28,7 +30,7 @@ export class CharacterStream {
     return this._offset;
   }
 
-  get pos(): {line: number; column: number; char: number} {
+  get pos(): Types.PositionPart {
     return {
       line: this.line,
       column: this.column,
@@ -57,16 +59,8 @@ export class CharacterStream {
   }
 
   public accept(text: string): void {
-    const remember = this._offset;
-    try {
-      for (let i = 0, n = text.length; i < n; i++) {
-        this.expect(text.charAt(i));
-        this.next();
-      }
-    } catch (e) {
-      this._offset = remember;
-      throw new Error(`Unexpected character '${this.ch}' at ${this.line}:${this.column}. Expected '${text}'`);
-    }
+      this.expect(text);
+      this.next();
   }
 
   public skip(text: string): boolean {

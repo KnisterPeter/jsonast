@@ -61,15 +61,6 @@ test('CharacterStream should increment line and offset on read newline', t => {
   t.is(cs.offset, 1);
 });
 
-test('CharacterStream should accept multiple characters at once', t => {
-  const cs = new CharacterStream('abc');
-  cs.accept('ab');
-  t.is(cs.ch, 'c');
-  t.is(cs.line, 1);
-  t.is(cs.column, 3);
-  t.is(cs.offset, 2);
-});
-
 test('CharacterStream should throw if multiple characters could not be accepted', t => {
   const cs = new CharacterStream('abc');
   t.throws(() => cs.accept('abd'), /Unexpected character/);
