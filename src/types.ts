@@ -1,14 +1,12 @@
 export interface Position {
-  start: {
-    line: number;
-    column: number;
-    char: number;
-  };
-  end: {
-    line: number;
-    column: number;
-    char: number;
-  };
+  start: PositionPart;
+  end: PositionPart;
+}
+
+export interface PositionPart {
+  line: number;
+  column: number;
+  char: number;
 }
 
 export interface JsonNode {

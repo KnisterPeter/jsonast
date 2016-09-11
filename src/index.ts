@@ -2,6 +2,15 @@ import { CharacterStream } from './character-stream';
 import * as Types from './types';
 export * from './types';
 
+/**
+ * Parses a given string into a Json AST.
+ * This parser does some error correction (notably missing comma in objects and arrays).
+ * The template parameter could be used to qualify the result AST.
+ * 
+ * @export
+ * @param {string} text The Json text to parse
+ * @returns {JsonObject|JsonArray} Either a Json Object or Json Array AST node
+ */
 export default function parse<T extends Types.JsonObject|Types.JsonArray>(text: string): T {
   let result: Types.JsonNode | undefined = undefined;
   const cs = new CharacterStream(text);
@@ -101,20 +110,22 @@ function array(cs: CharacterStream): Types.JsonArray {
 
 function value(cs: CharacterStream): Types.JsonValue {
   ws(cs);
-  if (cs.ch === '"') {
-    return string(cs);
-  } else if (cs.ch === '{') {
-    return object(cs);
-  } else if (cs.ch === '[') {
-    return array(cs);
-  } else if (cs.ch === 't') {
-    return trueLiteral(cs);
-  } else if (cs.ch === 'f') {
-    return falseLiteral(cs);
-  } else if (cs.ch === 'n') {
-    return nullLiteral(cs);
+  switch (cs.ch) {
+    case '"':
+      return string(cs);
+    case '{':
+      return object(cs);
+    case '[':
+      return array(cs);
+    case 't':
+      return trueLiteral(cs);
+    case 'f':
+      return falseLiteral(cs);
+    case 'n':
+      return nullLiteral(cs);
+    default:
+      return number(cs);
   }
-  return number(cs);
 }
 
 function string(cs: CharacterStream): Types.JsonString {
@@ -139,7 +150,10 @@ function string(cs: CharacterStream): Types.JsonString {
 function trueLiteral(cs: CharacterStream): Types.JsonLiteral {
   ws(cs);
   const start = cs.pos;
-  cs.accept('true');
+  cs.accept('t');
+  cs.accept('r');
+  cs.accept('u');
+  cs.accept('e');
   return {
     type: 'true',
     pos: {
@@ -152,7 +166,11 @@ function trueLiteral(cs: CharacterStream): Types.JsonLiteral {
 function falseLiteral(cs: CharacterStream): Types.JsonLiteral {
   ws(cs);
   const start = cs.pos;
-  cs.accept('false');
+  cs.accept('f');
+  cs.accept('a');
+  cs.accept('l');
+  cs.accept('s');
+  cs.accept('e');
   return {
     type: 'false',
     pos: {
@@ -165,7 +183,10 @@ function falseLiteral(cs: CharacterStream): Types.JsonLiteral {
 function nullLiteral(cs: CharacterStream): Types.JsonLiteral {
   ws(cs);
   const start = cs.pos;
-  cs.accept('null');
+  cs.accept('n');
+  cs.accept('u');
+  cs.accept('l');
+  cs.accept('l');
   return {
     type: 'null',
     pos: {
