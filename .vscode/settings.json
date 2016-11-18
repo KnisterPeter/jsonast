@@ -2,8 +2,7 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "eslint.enable": false,
   "files.exclude": {
-    "**/.git": true,
-    "**/dist": true
+    "**/.git": true
   },
   "search.exclude": {
     "**/node_modules": true,
