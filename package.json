@@ -47,7 +47,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^6.0.38",
-    "ava": "^0.16.0",
+    "ava": "^0.17.0",
     "copyfiles": "^1.0.0",
     "coveralls": "^2.11.12",
     "cz-conventional-changelog": "^1.2.0",
