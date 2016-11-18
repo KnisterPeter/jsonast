@@ -1,5 +1,6 @@
 import test from 'ava';
 import * as fs from 'fs';
+import * as path from 'path';
 import parse, * as Types from '../src/index';
 
 test('jsonast should throw if dangling input found', t => {
@@ -253,7 +254,7 @@ test('jsonast should accept array with elements', t => {
 });
 
 test('jsonast should accept complex json', t => {
-  t.deepEqual(parse(fs.readFileSync('./fixtures/complex.json').toString()), {
+  t.deepEqual(parse(fs.readFileSync(path.join(__dirname, 'fixtures/complex.json')).toString()), {
     'type': 'object',
     'pos': {
       'start': {
