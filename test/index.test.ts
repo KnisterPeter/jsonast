@@ -255,239 +255,239 @@ test('jsonast should accept array with elements', t => {
 
 test('jsonast should accept complex json', t => {
   t.deepEqual(parse(fs.readFileSync(path.join(__dirname, 'fixtures/complex.json')).toString()), {
-    'type': 'object',
-    'pos': {
-      'start': {
-        'line': 1,
-        'column': 1,
-        'char': 0
+    type: 'object',
+    pos: {
+      start: {
+        line: 1,
+        column: 1,
+        char: 0
       },
-      'end': {
-        'line': 13,
-        'column': 2,
-        'char': 157
+      end: {
+        line: 13,
+        column: 2,
+        char: 157
       }
     },
-    'members': [
+    members: [
       {
-        'key': {
-          'type': 'string',
-          'value': 'array',
-          'pos': {
-            'start': {
-              'line': 2,
-              'column': 3,
-              'char': 4
+        key: {
+          type: 'string',
+          value: 'array',
+          pos: {
+            start: {
+              line: 2,
+              column: 3,
+              char: 4
             },
-            'end': {
-              'line': 2,
-              'column': 10,
-              'char': 11
+            end: {
+              line: 2,
+              column: 10,
+              char: 11
             }
           }
         },
-        'value': {
-          'type': 'array',
-          'pos': {
-            'start': {
-              'line': 2,
-              'column': 12,
-              'char': 13
+        value: {
+          type: 'array',
+          pos: {
+            start: {
+              line: 2,
+              column: 12,
+              char: 13
             },
-            'end': {
-              'line': 12,
-              'column': 4,
-              'char': 155
+            end: {
+              line: 12,
+              column: 4,
+              char: 155
             }
           },
-          'elements': [{
-            'type': 'true',
-            'pos': {
-              'start': {
-                'line': 3,
-                'column': 5,
-                'char': 19
+          elements: [{
+            type: 'true',
+            pos: {
+              start: {
+                line: 3,
+                column: 5,
+                char: 19
               },
-              'end': {
-                'line': 3,
-                'column': 9,
-                'char': 23
+              end: {
+                line: 3,
+                column: 9,
+                char: 23
               }
             }
           },
           {
-            'type': 'false',
-            'pos': {
-              'start': {
-                'line': 4,
-                'column': 5,
-                'char': 29
+            type: 'false',
+            pos: {
+              start: {
+                line: 4,
+                column: 5,
+                char: 29
               },
-              'end': {
-                'line': 4,
-                'column': 10,
-                'char': 34
+              end: {
+                line: 4,
+                column: 10,
+                char: 34
               }
             }
           },
           {
-            'type': 'null',
-            'pos': {
-              'start': {
-                'line': 5,
-                'column': 5,
-                'char': 40
+            type: 'null',
+            pos: {
+              start: {
+                line: 5,
+                column: 5,
+                char: 40
               },
-              'end': {
-                'line': 5,
-                'column': 9,
-                'char': 44
+              end: {
+                line: 5,
+                column: 9,
+                char: 44
               }
             }
           },
           {
-            'type': 'object',
-            'pos': {
-              'start': {
-                'line': 6,
-                'column': 5,
-                'char': 50
+            type: 'object',
+            pos: {
+              start: {
+                line: 6,
+                column: 5,
+                char: 50
               },
-              'end': {
-                'line': 11,
-                'column': 6,
-                'char': 151
+              end: {
+                line: 11,
+                column: 6,
+                char: 151
               }
             },
-            'members': [{
-              'key': {
-                'type': 'string',
-                'value': 'object',
-                'pos': {
-                  'start': {
-                    'line': 7,
-                    'column': 7,
-                    'char': 58
+            members: [{
+              key: {
+                type: 'string',
+                value: 'object',
+                pos: {
+                  start: {
+                    line: 7,
+                    column: 7,
+                    char: 58
                   },
-                  'end': {
-                    'line': 7,
-                    'column': 15,
-                    'char': 66
+                  end: {
+                    line: 7,
+                    column: 15,
+                    char: 66
                   }
                 }
               },
-              'value': {
-                'type': 'object',
-                'pos': {
-                  'start': {
-                    'line': 7,
-                    'column': 17,
-                    'char': 68
+              value: {
+                type: 'object',
+                pos: {
+                  start: {
+                    line: 7,
+                    column: 17,
+                    char: 68
                   },
-                  'end': {
-                    'line': 7,
-                    'column': 19,
-                    'char': 70
+                  end: {
+                    line: 7,
+                    column: 19,
+                    char: 70
                   }
                 }
               }
             },
             {
-              'key': {
-                'type': 'string',
-                'value': 'boolean',
-                'pos': {
-                  'start': {
-                    'line': 8,
-                    'column': 7,
-                    'char': 78
+              key: {
+                type: 'string',
+                value: 'boolean',
+                pos: {
+                  start: {
+                    line: 8,
+                    column: 7,
+                    char: 78
                   },
-                  'end': {
-                    'line': 8,
-                    'column': 16,
-                    'char': 87
+                  end: {
+                    line: 8,
+                    column: 16,
+                    char: 87
                   }
                 }
               },
-              'value': {
-                'type': 'true',
-                'pos': {
-                  'start': {
-                    'line': 8,
-                    'column': 18,
-                    'char': 89
+              value: {
+                type: 'true',
+                pos: {
+                  start: {
+                    line: 8,
+                    column: 18,
+                    char: 89
                   },
-                  'end': {
-                    'line': 8,
-                    'column': 22,
-                    'char': 93
+                  end: {
+                    line: 8,
+                    column: 22,
+                    char: 93
                   }
                 }
               }
             },
             {
-              'key': {
-                'type': 'string',
-                'value': 'undefined',
-                'pos': {
-                  'start': {
-                    'line': 9,
-                    'column': 7,
-                    'char': 101
+              key: {
+                type: 'string',
+                value: 'undefined',
+                pos: {
+                  start: {
+                    line: 9,
+                    column: 7,
+                    char: 101
                   },
-                  'end': {
-                    'line': 9,
-                    'column': 18,
-                    'char': 112
+                  end: {
+                    line: 9,
+                    column: 18,
+                    char: 112
                   }
                 }
               },
-              'value': {
-                'type': 'null',
-                'pos': {
-                  'start': {
-                    'line': 9,
-                    'column': 20,
-                    'char': 114
+              value: {
+                type: 'null',
+                pos: {
+                  start: {
+                    line: 9,
+                    column: 20,
+                    char: 114
                   },
-                  'end': {
-                    'line': 9,
-                    'column': 24,
-                    'char': 118
+                  end: {
+                    line: 9,
+                    column: 24,
+                    char: 118
                   }
                 }
               }
             },
             {
-              'key': {
-                'type': 'string',
-                'value': 'number',
-                'pos': {
-                  'start': {
-                    'line': 10,
-                    'column': 7,
-                    'char': 126
+              key: {
+                type: 'string',
+                value: 'number',
+                pos: {
+                  start: {
+                    line: 10,
+                    column: 7,
+                    char: 126
                   },
-                  'end': {
-                    'line': 10,
-                    'column': 15,
-                    'char': 134
+                  end: {
+                    line: 10,
+                    column: 15,
+                    char: 134
                   }
                 }
               },
-              'value': {
-                'type': 'number',
-                'value': 1.234e-55,
-                'pos': {
-                  'start': {
-                    'line': 10,
-                    'column': 17,
-                    'char': 136
+              value: {
+                type: 'number',
+                value: 1.234e-55,
+                pos: {
+                  start: {
+                    line: 10,
+                    column: 17,
+                    char: 136
                   },
-                  'end': {
-                    'line': 10,
-                    'column': 26,
-                    'char': 145
+                  end: {
+                    line: 10,
+                    column: 26,
+                    char: 145
                   }
                 }
               }

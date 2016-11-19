@@ -48,7 +48,7 @@ function object(cs: CharacterStream): Types.JsonObject {
       if (cs1.ch === ',') {
         cs1.next();
       } else if (cs1.ch === '"') {
-        // This is probably a missing comma
+        // this is probably a missing comma
       } else {
         next = false;
       }
@@ -96,7 +96,7 @@ function array(cs: CharacterStream): Types.JsonArray {
       if (cs.ch === ',') {
         cs.next();
       } else if (cs.ch !== ']') {
-        // This is probably a missing comma
+        // this is probably a missing comma
       } else {
         next = false;
       }
@@ -108,6 +108,7 @@ function array(cs: CharacterStream): Types.JsonArray {
   return ast;
 }
 
+/* tslint:disable:cyclomatic-complexity */
 function value(cs: CharacterStream): Types.JsonValue {
   ws(cs);
   switch (cs.ch) {
@@ -127,6 +128,7 @@ function value(cs: CharacterStream): Types.JsonValue {
       return number(cs);
   }
 }
+/* tslint:enable:cyclomatic-complexity */
 
 function string(cs: CharacterStream): Types.JsonString {
   const start = cs.pos;
@@ -197,6 +199,7 @@ function nullLiteral(cs: CharacterStream): Types.JsonLiteral {
 }
 
 function number(cs: CharacterStream): Types.JsonNumber {
+  /* tslint:disable:cyclomatic-complexity */
   function digit(): string {
     let number = '';
     const ch = cs.ch;
@@ -207,6 +210,7 @@ function number(cs: CharacterStream): Types.JsonNumber {
     }
     return number;
   }
+  /* tslint:enable:cyclomatic-complexity */
   function digits(): string {
     let number = digit();
     let temp = digit();

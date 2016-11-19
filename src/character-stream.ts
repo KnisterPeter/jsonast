@@ -2,13 +2,17 @@ import * as Types from './types';
 
 export class CharacterStream {
 
+  private text: string;
+
   private _offset: number = 0;
 
   private _line: number = 1;
 
   private _column: number = 1;
 
-  constructor(private text: string) {}
+  constructor(text: string) {
+    this.text = text;
+  }
 
   get ch(): string {
     return this.text.charAt(this._offset);

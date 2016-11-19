@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist .nyc_output coverage",
-    "linter": "tslint '{src,test}/**/*.ts'",
+    "linter": "tslint --project ./tsconfig.json --type-check",
     "prebuild": "npm run clean",
     "build": "tsc --sourceMap",
     "copyfixtures": "copyfiles test/**/*.json dist",
