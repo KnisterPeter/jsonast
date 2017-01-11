@@ -46,7 +46,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^6.0.38",
+    "@types/node": "^7.0.0",
     "ava": "^0.17.0",
     "copyfiles": "^1.0.0",
     "coveralls": "^2.11.12",
