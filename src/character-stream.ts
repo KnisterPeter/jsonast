@@ -4,11 +4,11 @@ export class CharacterStream {
 
   private text: string;
 
-  private _offset: number = 0;
+  private _offset = 0;
 
-  private _line: number = 1;
+  private _line = 1;
 
-  private _column: number = 1;
+  private _column = 1;
 
   constructor(text: string) {
     this.text = text;

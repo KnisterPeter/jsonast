@@ -31,7 +31,7 @@ function object(cs: CharacterStream): Types.JsonObject {
   function members(cs1: CharacterStream): Types.Pair[] {
     function pair(cs2: CharacterStream): Types.Pair {
       ws(cs2);
-      let key = string(cs2);
+      const key = string(cs2);
       ws(cs2);
       cs2.accept(':');
       return {
