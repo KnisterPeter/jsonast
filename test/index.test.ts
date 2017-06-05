@@ -26,7 +26,7 @@ test('jsonast should accept plain object', t => {
 });
 
 test('jsonast should accept object with string member', t => {
-  t.deepEqual(parse('{"key":"value"}'), {
+  const expected: Types.JsonObject = {
     type: 'object',
     members: [
       {
@@ -76,11 +76,12 @@ test('jsonast should accept object with string member', t => {
         char: 15
       }
     }
-  } as Types.JsonObject);
+  };
+  t.deepEqual(parse('{"key":"value"}'), expected);
 });
 
 test('jsonast should accept object with string members', t => {
-  t.deepEqual(parse('{"key":"value","key2":"value2"}'), {
+  const expected: Types.JsonObject = {
     type: 'object',
     members: [
       {
@@ -164,7 +165,8 @@ test('jsonast should accept object with string members', t => {
         char: 31
       }
     }
-  } as Types.JsonObject);
+  };
+  t.deepEqual(parse('{"key":"value","key2":"value2"}'), expected);
 });
 
 test('jsonast should accept plain array', t => {
@@ -186,7 +188,7 @@ test('jsonast should accept plain array', t => {
 });
 
 test('jsonast should accept array with elements', t => {
-  t.deepEqual(parse('[-1,0,12.34e-56]'), {
+  const expected: Types.JsonArray = {
     type: 'array',
     elements: [
       {
@@ -250,11 +252,12 @@ test('jsonast should accept array with elements', t => {
         char: 16
       }
     }
-  } as Types.JsonArray);
+  };
+  t.deepEqual(parse('[-1,0,12.34e-56]'), expected);
 });
 
 test('jsonast should accept complex json', t => {
-  t.deepEqual(parse(fs.readFileSync(path.join(__dirname, 'fixtures/complex.json')).toString()), {
+  const expected: Types.JsonObject = {
     type: 'object',
     pos: {
       start: {
@@ -495,7 +498,8 @@ test('jsonast should accept complex json', t => {
           }]
         }
       }]
-  } as Types.JsonObject);
+  };
+  t.deepEqual(parse(fs.readFileSync(path.join(__dirname, 'fixtures/complex.json')).toString()), expected);
 });
 
 test('jsonast should correct a missing comma in objects', t => {
