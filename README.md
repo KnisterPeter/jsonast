@@ -1,5 +1,7 @@
 # jsonast is a json to ast parser with some error correction
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/jsonast.svg)](https://greenkeeper.io/)
+
 [![license][license-image]][license-url]
 [![npm][npm-image]][npm-url]
 [![dep][daviddm-jsonast-image]][daviddm-jsonast-url]
