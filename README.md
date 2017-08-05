@@ -1,15 +1,12 @@
 # jsonast is a json to ast parser with some error correction
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/jsonast.svg)](https://greenkeeper.io/)
-
 [![license][license-image]][license-url]
 [![npm][npm-image]][npm-url]
-[![dep][daviddm-jsonast-image]][daviddm-jsonast-url]
-[![dev][daviddm-dev-jsonast-image]][daviddm-dev-jsonast-url]
 [![travis][travis-image]][travis-url]
 [![coveralls][coveralls-image]][coveralls-url]
 [![commitizen][commitizen-image]][commitizen-url]
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
+[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/jsonast.svg)](https://greenkeeper.io/)
 
 ## Rationale
 
@@ -57,11 +54,6 @@ jsonast is built by [KnisterPeter](https://github.com/KnisterPeter) and
 
 [npm-image]: https://img.shields.io/npm/v/jsonast.svg?maxAge=2592000
 [npm-url]: https://www.npmjs.com/package/jsonast
-
-[daviddm-jsonast-image]: https://david-dm.org/KnisterPeter/jsonast/status.svg
-[daviddm-jsonast-url]: https://david-dm.org/KnisterPeter/jsonast
-[daviddm-dev-jsonast-image]: https://david-dm.org/KnisterPeter/jsonast/dev-status.svg
-[daviddm-dev-jsonast-url]: https://david-dm.org/KnisterPeter/jsonast?type=dev
 
 [travis-image]: https://travis-ci.org/KnisterPeter/jsonast.svg?branch=master
 [travis-url]: https://travis-ci.org/KnisterPeter/jsonast
