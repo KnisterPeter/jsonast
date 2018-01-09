@@ -47,7 +47,7 @@
   "dependencies": {},
   "devDependencies": {
     "@knisterpeter/standard-tslint": "^1.4.0",
-    "@types/node": "^8.0.50",
+    "@types/node": "^9.3.0",
     "ava": "^0.24.0",
     "copyfiles": "^1.0.0",
     "coveralls": "^3.0.0",
