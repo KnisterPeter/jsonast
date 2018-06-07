@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 import test from 'ava';
 import { CharacterStream } from '../src/character-stream';
 

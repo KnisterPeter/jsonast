@@ -2,7 +2,7 @@ import * as Types from './types';
 
 export class CharacterStream {
 
-  private text: string;
+  private readonly text: string;
 
   private _offset = 0;
 
