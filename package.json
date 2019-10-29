@@ -83,5 +83,21 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ],
+    "lockFileMaintenance": {
+      "enabled": true
+    },
+    "packageRules": [
+      {
+        "packagePatterns": [
+          "^@types/"
+        ],
+        "automerge": true
+      }
+    ]
   }
 }
