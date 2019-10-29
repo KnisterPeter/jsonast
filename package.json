@@ -49,7 +49,7 @@
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/node": "12.11.7",
     "ava": "0.25.0",
-    "copyfiles": "2.0.0",
+    "copyfiles": "2.1.1",
     "coveralls": "3.0.1",
     "cz-conventional-changelog": "3.0.2",
     "in-publish": "2.0.0",
