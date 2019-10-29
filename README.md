@@ -4,9 +4,8 @@
 [![npm][npm-image]][npm-url]
 [![travis][travis-image]][travis-url]
 [![coveralls][coveralls-image]][coveralls-url]
-[![commitizen][commitizen-image]][commitizen-url]
 [![Standard Version](https://img.shields.io/badge/release-standard%20version-brightgreen.svg)](https://github.com/conventional-changelog/standard-version)
-[![Greenkeeper badge](https://badges.greenkeeper.io/KnisterPeter/jsonast.svg)](https://greenkeeper.io/)
+[![renovate badge](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/)
 
 ## Rationale
 
