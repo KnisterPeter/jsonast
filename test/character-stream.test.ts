@@ -1,80 +1,78 @@
-// tslint:disable-next-line:no-implicit-dependencies
-import test from 'ava';
 import { CharacterStream } from '../src/character-stream';
 
-test('CharacterStream should return the current character', t => {
+test('CharacterStream should return the current character', () => {
   const cs = new CharacterStream('some test');
-  t.is(cs.ch, 's');
+  expect(cs.ch).toBe('s');
 });
 
-test('CharacterStream should indicate end of input', t => {
+test('CharacterStream should indicate end of input', () => {
   const cs = new CharacterStream('');
-  t.true(cs.eoi);
+  expect(cs.eoi).toBeTruthy();
 });
 
-test('CharacterStream should return the current line', t => {
+test('CharacterStream should return the current line', () => {
   const cs = new CharacterStream('a');
-  t.is(cs.line, 1);
+  expect(cs.line).toBe(1);
 });
 
-test('CharacterStream should return the current column', t => {
+test('CharacterStream should return the current column', () => {
   const cs = new CharacterStream('a');
-  t.is(cs.column, 1);
+  expect(cs.column).toBe(1);
 });
 
-test('CharacterStream should return the current character offset', t => {
+test('CharacterStream should return the current character offset', () => {
   const cs = new CharacterStream('a');
-  t.is(cs.offset, 0);
+  expect(cs.offset).toBe(0);
 });
 
-test('CharacterStream should return the current position', t => {
+test('CharacterStream should return the current position', () => {
   const cs = new CharacterStream('a');
-  t.deepEqual(cs.pos, {
+  expect(cs.pos).toEqual({
     line: 1,
     column: 1,
     char: 0
   });
 });
 
-test('CharacterStream should return if the expected character is met', t => {
+test('CharacterStream should return if the expected character is met', () => {
   const cs = new CharacterStream('a');
-  t.notThrows(() => cs.expect('a'));
+  expect(() => cs.expect('a')).not.toThrow();
 });
 
-test('CharacterStream should fail if the expected character is not met', t => {
+test('CharacterStream should fail if the expected character is not met', () => {
   const cs = new CharacterStream('a');
-  t.throws(() => cs.expect('b'), /Unexpected character/);
+  expect(() => cs.expect('b')).toThrow(/Unexpected character/);
 });
 
-test('CharacterStream should increment column and offset on read', t => {
+test('CharacterStream should increment column and offset on read', () => {
   const cs = new CharacterStream('abc');
   cs.next();
-  t.is(cs.line, 1);
-  t.is(cs.column, 2);
-  t.is(cs.offset, 1);
+  expect(cs.line).toBe(1);
+  expect(cs.column).toBe(2);
+  expect(cs.offset).toBe(1);
 });
 
-test('CharacterStream should increment line and offset on read newline', t => {
+test('CharacterStream should increment line and offset on read newline', () => {
   const cs = new CharacterStream('\nbc');
   cs.next();
-  t.is(cs.line, 2);
-  t.is(cs.column, 1);
-  t.is(cs.offset, 1);
+  expect(cs.line).toBe(2);
+  expect(cs.column).toBe(1);
+  expect(cs.offset).toBe(1);
 });
 
-test('CharacterStream should throw if multiple characters could not be accepted', t => {
+test('CharacterStream should throw if multiple characters could not be accepted', () => {
   const cs = new CharacterStream('abc');
-  t.throws(() => cs.accept('abd'), /Unexpected character/);
+  expect(() => cs.accept('abd')).toThrow(/Unexpected character/);
 });
 
-test('CharacterStream should skip if possible', t => {
+test('CharacterStream should skip if possible', () => {
   const cs = new CharacterStream('abc');
-  t.true(cs.skip('a'));
-  t.is(cs.ch, 'b');
+  expect(cs.skip('a')).toBeTruthy();
+  expect(cs.ch).toBe('b');
 });
 
-test('CharacterStream should not skip if not possible', t => {
+test('CharacterStream should not skip if not possible', () => {
   const cs = new CharacterStream('abc');
-  t.false(cs.skip('b'));
-  t.is(cs.ch, 'a');
+  expect(cs.skip('b')).toBeFalsy();
+  expect(cs.ch).toBe('a');
 });

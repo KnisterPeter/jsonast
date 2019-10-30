@@ -10,16 +10,13 @@
   "scripts": {
     "clean": "rimraf dist .nyc_output coverage",
     "linter": "tslint --project ./tsconfig.json --type-check",
-    "prebuild": "npm run clean",
+    "prebuild": "yarn clean",
     "build": "tsc --sourceMap",
     "copyfixtures": "copyfiles test/**/*.json dist",
-    "pretest": "npm run build && npm run copyfixtures",
-    "test": "ava",
-    "prepublish": "not-in-install && npm run test || echo 'In install cycle, skipping prepublish'",
-    "precoverage": "npm run clean && tsc --inlineSourceMap && npm run copyfixtures",
-    "coverage": "nyc --reporter lcov --all ava",
+    "pretest": "yarn build && yarn copyfixtures",
+    "test": "jest",
     "watch:build": "tsc --sourceMap --watch",
-    "prewatch:test": "npm run copyfixtures",
+    "prewatch:test": "yarn copyfixtures",
     "watch:test": "ava --watch",
     "prerelease": "git checkout master && git pull origin master",
     "release": "standard-version",
@@ -47,36 +44,29 @@
   "dependencies": {},
   "devDependencies": {
     "@knisterpeter/standard-tslint": "1.7.2",
+    "@types/jest": "^24.0.21",
     "@types/node": "12.12.0",
-    "ava": "0.25.0",
     "copyfiles": "2.1.1",
     "coveralls": "3.0.1",
     "cz-conventional-changelog": "3.0.2",
-    "in-publish": "2.0.0",
+    "jest": "^24.9.0",
     "nyc": "14.1.1",
     "rimraf": "3.0.0",
     "source-map-support": "0.5.16",
     "standard-version": "7.0.0",
+    "ts-jest": "^24.1.0",
     "tslint": "5.20.0",
     "typescript": "3.6.4"
   },
-  "ava": {
-    "files": [
-      "dist/test/**/*.test.js"
+  "jest": {
+    "preset": "ts-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
     ],
-    "source": [
-      "dist/src/**/*.js"
-    ],
-    "require": [
-      "source-map-support/register"
-    ]
-  },
-  "nyc": {
-    "exclude": [
-      "node_modules",
-      "dist/test",
-      "coverage",
-      "test"
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**"
     ]
   },
   "config": {
