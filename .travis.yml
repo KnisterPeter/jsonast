@@ -9,8 +9,6 @@ matrix:
 branches:
   only:
     - master
-    - /^greenkeeper-.*$/
-    - /^greenkeeper/.*$/
 cache:
   directories:
   - node_modules
@@ -18,6 +16,6 @@ notifications:
   email:
     on_success: never
 
-before_script: 'npm run linter'
-script: 'npm run coverage'
+before_script: 'yarn linter'
+script: 'yarn test'
 after_script: "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"

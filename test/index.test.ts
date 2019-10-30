@@ -1,15 +1,13 @@
-// tslint:disable-next-line:no-implicit-dependencies
-import test from 'ava';
 import * as fs from 'fs';
 import * as path from 'path';
 import parse, * as Types from '../src/index';
 
-test('jsonast should throw if dangling input found', t => {
-  t.throws(() => parse('a'), /Unexpected character/);
+test('jsonast should throw if dangling input found', () => {
+  expect(() => parse('a')).toThrow(/Unexpected character/);
 });
 
-test('jsonast should accept plain object', t => {
-  t.deepEqual(parse('{}'), {
+test('jsonast should accept plain object', () => {
+  expect(parse('{}')).toEqual({
     type: 'object',
     pos: {
       start: {
@@ -26,7 +24,7 @@ test('jsonast should accept plain object', t => {
   });
 });
 
-test('jsonast should accept object with string member', t => {
+test('jsonast should accept object with string member', () => {
   const expected: Types.JsonObject = {
     type: 'object',
     members: [
@@ -78,10 +76,10 @@ test('jsonast should accept object with string member', t => {
       }
     }
   };
-  t.deepEqual(parse('{"key":"value"}'), expected);
+  expect(parse('{"key":"value"}')).toEqual(expected);
 });
 
-test('jsonast should accept object with string members', t => {
+test('jsonast should accept object with string members', () => {
   const expected: Types.JsonObject = {
     type: 'object',
     members: [
@@ -167,11 +165,11 @@ test('jsonast should accept object with string members', t => {
       }
     }
   };
-  t.deepEqual(parse('{"key":"value","key2":"value2"}'), expected);
+  expect(parse('{"key":"value","key2":"value2"}')).toEqual(expected);
 });
 
-test('jsonast should accept plain array', t => {
-  t.deepEqual(parse('[]'), {
+test('jsonast should accept plain array', () => {
+  expect(parse('[]')).toEqual({
     type: 'array',
     pos: {
       start: {
@@ -188,7 +186,7 @@ test('jsonast should accept plain array', t => {
   });
 });
 
-test('jsonast should accept array with elements', t => {
+test('jsonast should accept array with elements', () => {
   const expected: Types.JsonArray = {
     type: 'array',
     elements: [
@@ -254,10 +252,10 @@ test('jsonast should accept array with elements', t => {
       }
     }
   };
-  t.deepEqual(parse('[-1,0,12.34e-56]'), expected);
+  expect(parse('[-1,0,12.34e-56]')).toEqual(expected);
 });
 
-test('jsonast should accept complex json', t => {
+test('jsonast should accept complex json', () => {
   const expected: Types.JsonObject = {
     type: 'object',
     pos: {
@@ -500,15 +498,15 @@ test('jsonast should accept complex json', t => {
         }
       }]
   };
-  t.deepEqual(parse(fs.readFileSync(path.join(__dirname, 'fixtures/complex.json')).toString()), expected);
+  expect(parse(fs.readFileSync(path.join(__dirname, 'fixtures/complex.json')).toString())).toEqual(expected);
 });
 
-test('jsonast should correct a missing comma in objects', t => {
+test('jsonast should correct a missing comma in objects', () => {
   const actual = parse<Types.JsonObject>('{"a": "b" "c": "d"}');
-  t.is(actual.members!.length, 2);
+  expect(actual.members!.length).toBe(2);
 });
 
-test('jsonast should correct a missing comma in arrays', t => {
+test('jsonast should correct a missing comma in arrays', () => {
   const actual = parse<Types.JsonArray>('[0 1]');
-  t.is(actual.elements!.length, 2);
+  expect(actual.elements!.length).toBe(2);
 });
