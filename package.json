@@ -55,7 +55,7 @@
     "source-map-support": "0.5.16",
     "standard-version": "7.0.1",
     "ts-jest": "24.3.0",
-    "tslint": "5.20.1",
+    "tslint": "6.0.0",
     "typescript": "3.7.5"
   },
   "jest": {
