@@ -46,7 +46,7 @@
     "@knisterpeter/standard-tslint": "1.7.2",
     "@types/jest": "26.0.14",
     "@types/node": "12.12.54",
-    "copyfiles": "2.3.0",
+    "copyfiles": "2.4.0",
     "coveralls": "3.1.0",
     "cz-conventional-changelog": "3.3.0",
     "jest": "26.4.2",
